@@ -1,0 +1,23 @@
+version: 1.0-basic
+rspec: kube.rspec
+upload:
+  - meta: manifest.xml
+  - generated: keypair
+  {% for f in include_files %}
+  - {{ f }}
+  {% endfor %}
+execute:
+  - bundled: setup_ipv4.sh
+    sudo: true
+  - bundled: ssh_copy.sh
+    nodes: pc
+  - bundled: setup_kubernetes_common.sh
+    sudo: true
+    nodes: pc
+  - bundled: ssh_root.sh
+    nodes: [node{{range(1, amount_nodes + 1)|join(',node')}},master]
+  - bundled: setup_cnf_testbed.sh
+    sudo: true
+    nodes: pc
+  - bundled: set_kubeconfig.sh
+    nodes: pc
