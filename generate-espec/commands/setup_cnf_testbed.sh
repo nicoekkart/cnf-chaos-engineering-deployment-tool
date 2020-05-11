@@ -22,3 +22,4 @@ rm -rf data/cnftestbed/cluster.yml data/cnftestbed/mycluster
 
 cat data/cnftestbed/kubernetes.env
 make k8s
+make vswitch

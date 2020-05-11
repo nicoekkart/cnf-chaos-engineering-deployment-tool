@@ -7,6 +7,8 @@ upload:
   - {{ f }}
   {% endfor %}
 execute:
+  - bundled: maximize-sda1.sh
+    sudo: true
   - bundled: setup_ipv4.sh
     sudo: true
   - bundled: ssh_copy.sh
@@ -19,5 +21,7 @@ execute:
   - bundled: setup_cnf_testbed.sh
     sudo: true
     nodes: pc
+  - bundled: setup_ipv4.sh
+    sudo: true
   - bundled: set_kubeconfig.sh
     nodes: pc
