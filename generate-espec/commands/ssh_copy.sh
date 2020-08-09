@@ -1,8 +1,8 @@
-all_hosts=($(hostname | sed 's/pc/master/'))
-i=1
-while ping -c 1 $(hostname | sed "s/pc/node$i/") &> /dev/null
+all_hosts=(192.168.0.2)
+i=4
+while ping -c 1 192.168.0.$i &> /dev/null
 do
-        all_hosts+=($(hostname | sed "s/pc/node$i/"))
+        all_hosts+=(192.168.0.$i)
         i=$((i+1))
 done
 

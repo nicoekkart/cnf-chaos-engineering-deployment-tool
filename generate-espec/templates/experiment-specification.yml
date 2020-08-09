@@ -7,6 +7,7 @@ upload:
   - {{ f }}
   {% endfor %}
 execute:
+  - bundled: current_time.sh
   - bundled: maximize-sda1.sh
     sudo: true
   - bundled: setup_ipv4.sh
@@ -25,3 +26,4 @@ execute:
     sudo: true
   - bundled: set_kubeconfig.sh
     nodes: pc
+  - bundled: current_time.sh

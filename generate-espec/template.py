@@ -3,11 +3,10 @@ from os import path
 
 
 class Template:
-    def __init__(self, amount_nodes, wall, influxdb, gateway):
+    def __init__(self, amount_nodes, wall, hardware):
         self.amount_nodes = amount_nodes
-        self.influxdb = influxdb
-        self.gateway = gateway
         self.wall = wall
+        self.hardware=hardware
         self.env = Environment(
             loader=FileSystemLoader(path.join(path.dirname(__file__), "templates")),
             trim_blocks=True,
@@ -29,4 +28,4 @@ class Template:
         return name, self.render(espec_template)
 
     def render(self, template, **kwargs):
-        return template.render(amount_nodes=self.amount_nodes, wall=self.wall, influxdb=self.influxdb, gateway=self.gateway, **kwargs)
+        return template.render(amount_nodes=self.amount_nodes, wall=self.wall, hardware=self.hardware, **kwargs)
